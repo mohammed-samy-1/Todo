@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Todo</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="stared">Stared</string>
 </resources>

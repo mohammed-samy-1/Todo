@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/todo_night"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:splitMotionEvents="false">
 
     <EditText
         android:id="@+id/editTextTextPersonName"
@@ -73,6 +74,7 @@
                 android:text="completed"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/r" />
