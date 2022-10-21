@@ -8,3 +8,5 @@ simple Todo app where you can create wish lists mark some as complete and others
     <li>delete todo</li>
     <li>clear list</li>
 </ul>
+![photo_2022-10-21_21-24-24](https://user-images.githubusercontent.com/95862182/197275626-33d64953-753b-4a21-a563-63ad7426de43.jpg)
+
