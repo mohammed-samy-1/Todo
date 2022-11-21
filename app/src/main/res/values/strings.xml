@@ -3,4 +3,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="stared">Stared</string>
+    <string name="new_todo">New Todo</string>
+    <string name="completed">completed</string>
+    <string name="todo">TODO</string>
 </resources>

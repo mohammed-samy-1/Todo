@@ -37,14 +37,9 @@ public class StaredItemsActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
 
-        todoViewModel.getAllById().observe(this, todos -> {
-            List<Todo> todos1 = new ArrayList<>();
-            for (Todo t : todos){
-                if (t.isStared()){
-                    todos1.add(0,t);
-                }
-            }
-            adapter.submitList(todos1);
+        todoViewModel.getAllTodosStared().observe(this, todos -> {
+
+            adapter.submitList(todos);
 
         });
     }

@@ -25,8 +25,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
     private EditText et;
@@ -118,23 +117,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        todoViewModel.getAllById().observe(this, todos -> {
-            List<Todo> todos1 = new ArrayList<>();
-            List<Todo> todosC = new ArrayList<>();
-            for (Todo t : todos) {
-                if (t.isAccomplished()) {
-                    todosC.add(0, t);
-                } else {
-                    todos1.add(0, t);
-                }
-            }
-            if (!todosC.isEmpty()) {
-                tvCompleted.setVisibility(View.VISIBLE);
-            } else {
-                tvCompleted.setVisibility(View.INVISIBLE);
-            }
-            adapter.submitList(todos1);
-            adapterC.submitList(todosC);
+        todoViewModel.getAllById().observe(this, todos -> adapter.submitList(todos));
+        todoViewModel.getAllByIdComplete().observe(this , todos -> {
+            if (!todos.isEmpty()) tvCompleted.setVisibility(View.VISIBLE);
+            else tvCompleted.setVisibility(View.INVISIBLE);
+            adapterC.submitList(todos);
         });
     }
 
@@ -150,11 +137,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.delete_all:
-                AlertDialog dialog = new MaterialAlertDialogBuilder(this)
+                @SuppressLint("UseCompatLoadingForDrawables") AlertDialog dialog = new MaterialAlertDialogBuilder(this)
                         .setTitle("Delete all Todos")
                         .setMessage("Are you sure you want to delete all your todos ?")
                         .setPositiveButton(R.string.yes, (dialogInterface, i) -> todoViewModel.deleteAll()).setNegativeButton(R.string.no,
-                                (dialogInterface, i) -> {}).create();
+                                (dialogInterface, i) -> {})
+                        .setBackground(getDrawable(R.drawable.dark_actionbar)).create();
                 dialog.show();
                 break;
             case R.id.stared:

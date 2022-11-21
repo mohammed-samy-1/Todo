@@ -11,6 +11,11 @@ import java.util.List;
 
 @Dao
 public interface TodoDao {
+    String TODOS_TABLE = "todos_Table";
+    String IS_ACCOMPLISHED = "isAccomplished";
+    String IS_STARED = "isStared";
+    String ID = "id";
+
     @Insert
     void insert(Todo todo);
     @Update
@@ -18,9 +23,13 @@ public interface TodoDao {
     @Delete
     void delete(Todo todo);
 
-    @Query("delete from todos_Table")
+    @Query("delete from " + TODOS_TABLE)
     void deleteAll();
 
-    @Query("select * from todos_Table order by id")
+    @Query("select * from " + TODOS_TABLE + " where " + IS_ACCOMPLISHED + " = 0 order by " + ID)
     LiveData<List<Todo>> getAllById();
+    @Query("select * from " + TODOS_TABLE + " where " + IS_ACCOMPLISHED + " = 1  order by " + ID)
+    LiveData<List<Todo>> getAllByIdComplete();
+    @Query("select * from " + TODOS_TABLE + " where " + IS_STARED + " = 1  order by " + ID)
+    LiveData<List<Todo>> getAllByIdStared();
 }

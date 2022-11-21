@@ -11,12 +11,10 @@ import java.util.List;
 
 public class TodoViewModel extends AndroidViewModel {
     private final TodoRepository repository;
-    private LiveData<List<Todo >> allTodos;
 
     public TodoViewModel(@NonNull @NotNull Application application) {
         super(application);
         repository = new TodoRepository(application);
-        allTodos = repository.getAllById();
     }
 
     public void insert(Todo todo){
@@ -36,5 +34,11 @@ public class TodoViewModel extends AndroidViewModel {
     public LiveData<List<Todo>> getAllById(){
         return repository.getAllById();
     }
-    
+    public LiveData<List<Todo>> getAllByIdComplete(){
+        return repository.getAllTodosComplete();
+    }
+    public LiveData<List<Todo>>getAllTodosStared(){
+        return repository.getAllTodosStared();
+    }
+
 }
